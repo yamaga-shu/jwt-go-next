@@ -1,0 +1,29 @@
+name: jwt-go-next
+services:
+  front-web:
+    container_name: front-web
+    build:
+      context: ./front-web
+      dockerfile: Dockerfile
+    entrypoint: npm run dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ../front-web:/app
+    depends_on:
+      - api-service
+    stop_signal: SIGKILL
+    tty: true
+
+  api-service:
+    container_name: api-service
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile
+    entrypoint: air
+    ports:
+      - "8000:8000"
+    volumes:
+      - "../api-service:/app"
+    stop_signal: SIGKILL
+    tty: true

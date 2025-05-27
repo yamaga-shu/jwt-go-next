@@ -21,3 +21,8 @@ up:
 .PHONY: down
 down:
 	@$(DOCKER_COMPOSE) down
+
+### api-test: api-service内でテストを実行します
+.PHONY: api-test
+api-test:
+	@$(DOCKER_COMPOSE) run --rm --entrypoint "go test ./..." api-service

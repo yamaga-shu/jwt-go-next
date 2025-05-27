@@ -39,3 +39,8 @@ func New(strEmail, plainPass string) (*User, error) {
 		hashedPass: hashedPass,
 	}, nil
 }
+
+// CheckPass checks if given plainPass is correct
+func (u User) CheckPass(plainPass string) bool {
+	return checkPasswordHash(plainPass, u.hashedPass)
+}

@@ -12,26 +12,30 @@ type User struct {
 	hashedPass string
 }
 
-func (u User) New(strEmail, plainPass string) (*User, error) {
+func New(strEmail, plainPass string) (*User, error) {
 	// id の生成
 	id := uuid.New()
 
+	// エラーの初期化
+	var err error
+
 	// パスワードのハッシュ化
-	hashedPass, err := hashPassword(plainPass)
+	var hashedPass string
+	hashedPass, err = hashPassword(plainPass)
 	if err != nil {
 		return nil, err
 	}
 
 	// メールの検証
-	email := email.Email{}
-	email, err = email.New(strEmail)
+	var userEmail *email.Email
+	userEmail, err = email.New(strEmail)
 	if err != nil {
 		return nil, err
 	}
 
 	return &User{
 		userId:     id,
-		email:      email,
+		email:      *userEmail,
 		hashedPass: hashedPass,
 	}, nil
 }

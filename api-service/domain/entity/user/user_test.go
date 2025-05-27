@@ -13,6 +13,10 @@ func TestPasswordHash(t *testing.T) {
 	}
 
 	if !checkPasswordHash(pass, hashedPass) {
-		t.Error("ckeckPasswordHash doesn't work")
+		t.Error("ckeckPasswordHash doesn't work. should be true, but got false")
+	}
+
+	if checkPasswordHash("incorrect password", hashedPass) {
+		t.Error("ckeckPasswordHash doesn't work. should be false, but got true")
 	}
 }

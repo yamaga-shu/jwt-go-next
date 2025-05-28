@@ -12,7 +12,7 @@ type Email struct {
 	value string
 }
 
-// NewEmail は、形式が正しい場合のみ Email を生成します
+// New は、形式が正しい場合のみ Email を生成します
 func New(value string) (*Email, error) {
 	if !emailRegex.MatchString(value) {
 		return &Email{}, InvalidEmailErr

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// インメモリーのSQLiteデータベースを持つent.Clientを作成します。
-	client, err := ent.Open(dialect.SQLite, "file:ent?mode=memory&cache=shared&_fk=1")
+	client, err := ent.Open(dialect.SQLite, "/etc/sqlite/ent.db?_fk=1")
 	if err != nil {
 		log.Fatalf("failed opening connection to sqlite: %v", err)
 	}

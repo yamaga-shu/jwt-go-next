@@ -22,7 +22,7 @@ up:
 down:
 	@$(DOCKER_COMPOSE) down
 
-### api-test: api-service内でテストを実行します
+### api-sh: api-service のコンテナで bash を実行します
 .PHONY: api-sh
 api-sh:
 	@$(DOCKER_COMPOSE) exec api-service bash

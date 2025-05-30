@@ -25,5 +25,6 @@ services:
       - "8000:8000"
     volumes:
       - "../api-service:/app"
+      - "./api-service/sqlite:/etc/sqlite"
     stop_signal: SIGKILL
     tty: true

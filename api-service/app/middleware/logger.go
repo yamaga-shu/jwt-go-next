@@ -7,9 +7,11 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
-func Set(e *echo.Echo) {
+// ログの設定
+func Logger(e *echo.Echo) {
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Skipper: func(c echo.Context) bool {
+			// 無視するパス
 			skipPaths := []string{
 				"/favicon.ico",
 				"/.well-known/appspecific/com.chrome.devtools.json",
@@ -20,6 +22,7 @@ func Set(e *echo.Echo) {
 	"time":"${time_rfc3339}",
 	"remote_ip":"${remote_ip}",
 	"uri":"${uri}",
+	"method":"${method}",
 	"status":"${status}",
 	"error":"${error}",
 	"headers": {

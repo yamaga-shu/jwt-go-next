@@ -7,7 +7,6 @@ import (
 	"entgo.io/ent/dialect"
 	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/yamaga-shu/jwt-go-next/api-service/app/middleware"
 	"github.com/yamaga-shu/jwt-go-next/api-service/app/router"
 	"github.com/yamaga-shu/jwt-go-next/api-service/ent"
 )
@@ -27,8 +26,6 @@ func main() {
 
 	// echo の初期化
 	e := echo.New()
-	// # middleware の設定
-	middleware.Set(e)
 	// # router の設定
 	router.Set(e)
 

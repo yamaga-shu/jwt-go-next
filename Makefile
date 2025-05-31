@@ -31,4 +31,4 @@ api-sh:
 ### api-log: api-service のコンテナのログを表示します
 .PHONY: api-log
 api-log:
-	@$(DOCKER_COMPOSE) logs api-service -f
+	@$(DOCKER_COMPOSE) logs api-service -f --no-log-prefix

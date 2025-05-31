@@ -3,11 +3,10 @@ package main
 import (
 	"context"
 	"log"
-	"net/http"
 
 	"entgo.io/ent/dialect"
-	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/yamaga-shu/jwt-go-next/api-service/app/router"
 	"github.com/yamaga-shu/jwt-go-next/api-service/ent"
 )
 
@@ -24,9 +23,7 @@ func main() {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 
-	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	e := router.Set()
+
 	e.Logger.Fatal(e.Start(":8000"))
 }

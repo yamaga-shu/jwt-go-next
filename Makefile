@@ -26,3 +26,8 @@ down:
 .PHONY: api-sh
 api-sh:
 	@$(DOCKER_COMPOSE) exec api-service bash
+
+### api-log: api-service のコンテナのログを表示します
+.PHONY: api-log
+api-log:
+	@$(DOCKER_COMPOSE) logs api-service -f

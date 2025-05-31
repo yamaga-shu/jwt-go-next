@@ -10,7 +10,8 @@ build:
 ### install: プロジェクト内のパッケージをインストールします
 .PHONY: install
 install:
-	@$(DOCKER_COMPOSE) run --rm --entrypoint "npm i" front-web
+	@$(DOCKER_COMPOSE) run --rm --entrypoint "npm i" front-web && \
+	$(DOCKER_COMPOSE) run --rm --entrypoint "go mod tidy" api-service
 
 ### up: Dockerコンテナイメージをデタッチモードで開始します
 .PHONY: up

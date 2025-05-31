@@ -5,7 +5,9 @@ import (
 	"log"
 
 	"entgo.io/ent/dialect"
+	"github.com/labstack/echo/v4"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/yamaga-shu/jwt-go-next/api-service/app/middleware"
 	"github.com/yamaga-shu/jwt-go-next/api-service/app/router"
 	"github.com/yamaga-shu/jwt-go-next/api-service/ent"
 )
@@ -18,12 +20,17 @@ func main() {
 	}
 	defer client.Close()
 	ctx := context.Background()
-	// 自動マイグレーションツールを実行して、すべてのスキーマリソースを作成します。
+	// ent スキーマのマイグレート
 	if err := client.Schema.Create(ctx); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 
-	e := router.Set()
+	// echo の初期化
+	e := echo.New()
+	// # middleware の設定
+	middleware.Set(e)
+	// # router の設定
+	router.Set(e)
 
 	e.Logger.Fatal(e.Start(":8000"))
 }

@@ -3,6 +3,7 @@ package user
 import (
 	"github.com/google/uuid"
 	"github.com/yamaga-shu/jwt-go-next/api-service/domain/valobj/email"
+	"github.com/yamaga-shu/jwt-go-next/api-service/domain/valobj/password"
 )
 
 // User: 一般ユーザー
@@ -19,9 +20,15 @@ func New(strEmail, plainPass string) (*User, error) {
 	// エラーの初期化
 	var err error
 
-	// パスワードのハッシュ化
+	// パスワードの検証
+	var pass *password.Password
+	pass, err = password.New(plainPass)
+	if err != nil {
+		return nil, err
+	}
+	// # パスワードのハッシュ化
 	var hashedPass string
-	hashedPass, err = hashPassword(plainPass)
+	hashedPass, err = pass.Hash()
 	if err != nil {
 		return nil, err
 	}
@@ -38,9 +45,4 @@ func New(strEmail, plainPass string) (*User, error) {
 		email:      *userEmail,
 		hashedPass: hashedPass,
 	}, nil
-}
-
-// CheckPass checks if given plainPass is correct
-func (u User) CheckPass(plainPass string) bool {
-	return checkPasswordHash(plainPass, u.hashedPass)
 }

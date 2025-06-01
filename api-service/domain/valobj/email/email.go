@@ -15,7 +15,7 @@ type Email struct {
 // New は、形式が正しい場合のみ Email を生成します
 func New(value string) (*Email, error) {
 	if !emailRegex.MatchString(value) {
-		return &Email{}, InvalidEmailErr
+		return nil, InvalidEmailErr
 	}
 	return &Email{value: value}, nil
 }

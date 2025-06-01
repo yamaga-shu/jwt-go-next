@@ -17,4 +17,16 @@ func Set(e *echo.Echo) {
 	e.GET("/health", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Health Check")
 	})
+
+	// # APIルートの設定
+	api := e.Group("/api")
+	// ## APIルート の version 設定
+	v1 := api.Group("/v1")
+
+	// # 非認証ルートの設定
+	// ## User 関連のルートグループ
+	ug := v1.Group("/user")
+	ug.POST("", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Create User")
+	})
 }

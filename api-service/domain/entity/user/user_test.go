@@ -5,10 +5,10 @@ import (
 )
 
 func TestUserNew(t *testing.T) {
-	emailStr := "test@example.com"
+	emlStr := "test@example.com"
 	passPlain := "Password@123"
 
-	_, err := New(emailStr, passPlain)
+	_, err := New(emlStr, passPlain)
 	if err != nil {
 		t.Errorf("error at creating New User %s", err)
 	}

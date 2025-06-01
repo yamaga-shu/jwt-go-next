@@ -1,4 +1,4 @@
-package password
+package valobj
 
 import "testing"
 
@@ -28,7 +28,7 @@ func TestPasswordNew(t *testing.T) {
 	}
 
 	for _, password := range valids {
-		_, err := New(password)
+		_, err := NewPassword(password)
 
 		if err != nil {
 			t.Errorf("expected valid password: %s", password)
@@ -36,7 +36,7 @@ func TestPasswordNew(t *testing.T) {
 	}
 
 	for _, password := range invalids {
-		_, err := New(password)
+		_, err := NewPassword(password)
 
 		if err == nil {
 			t.Errorf("expected invalid password: %s", password)
@@ -46,7 +46,7 @@ func TestPasswordNew(t *testing.T) {
 
 func TestPasswordHashCheck(t *testing.T) {
 	plain := "Password@123"
-	p, _ := New(plain)
+	p, _ := NewPassword(plain)
 
 	hashed, err := p.Hash()
 	if err != nil {

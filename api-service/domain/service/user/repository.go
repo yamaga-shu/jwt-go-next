@@ -1,7 +1,9 @@
 package user
 
-import "github.com/yamaga-shu/jwt-go-next/api-service/domain/entity/user"
+import (
+	"github.com/google/uuid"
+)
 
 type repository interface {
-	Store(*user.User) error
+	Store(id uuid.UUID, email string, hashedPass string) error
 }

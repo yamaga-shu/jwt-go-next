@@ -8,9 +8,9 @@ import (
 
 // User: 一般ユーザー
 type User struct {
-	userId     uuid.UUID
-	email      email.Email
-	hashedPass string
+	userId   uuid.UUID
+	email    email.Email
+	password password.Password
 }
 
 func New(strEmail, plainPass string) (*User, error) {
@@ -26,23 +26,17 @@ func New(strEmail, plainPass string) (*User, error) {
 	if err != nil {
 		return nil, err
 	}
-	// # パスワードのハッシュ化
-	var hashedPass string
-	hashedPass, err = pass.Hash()
-	if err != nil {
-		return nil, err
-	}
 
 	// メールの検証
-	var userEmail *email.Email
-	userEmail, err = email.New(strEmail)
+	var eml *email.Email
+	eml, err = email.New(strEmail)
 	if err != nil {
 		return nil, err
 	}
 
 	return &User{
-		userId:     id,
-		email:      *userEmail,
-		hashedPass: hashedPass,
+		userId:   id,
+		email:    *eml,
+		password: *pass,
 	}, nil
 }

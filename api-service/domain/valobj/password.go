@@ -17,8 +17,8 @@ var (
 	numberRegex   = regexp.MustCompile(`\d`)             // 数字を含む
 	lowerRegex    = regexp.MustCompile(`[a-z]`)          // 英小文字を含む
 	upperRegex    = regexp.MustCompile(`[A-Z]`)          // 英大文字を含む
-	symbolRegex   = regexp.MustCompile(`[@$!%*?&]`)      // 記号を含む
-	lengthRegex   = regexp.MustCompile(`^.{6,24}$`)      // 6文字以上24文字以下で構成される
+	symbolRegex   = regexp.MustCompile(`[!@#$%&*]`)      // 記号を含む
+	lengthRegex   = regexp.MustCompile(`^.{8,32}$`)      // 8文字以上32文字以下で構成される
 )
 
 // Password: パスワードを表現する構造体

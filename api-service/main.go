@@ -13,14 +13,14 @@ import (
 
 func main() {
 	// SQLiteデータベースを持つent.Clientを作成します。
-	client, err := ent.Open(dialect.SQLite, "/etc/sqlite/ent.db?_fk=1")
+	db, err := ent.Open(dialect.SQLite, "/etc/sqlite/ent.db?_fk=1")
 	if err != nil {
 		log.Fatalf("failed opening connection to sqlite: %v", err)
 	}
-	defer client.Close()
+	defer db.Close()
 	ctx := context.Background()
 	// ent スキーマのマイグレート
-	if err := client.Schema.Create(ctx); err != nil {
+	if err := db.Schema.Create(ctx); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 

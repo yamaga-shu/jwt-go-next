@@ -11,8 +11,8 @@ func TestPasswordNew(t *testing.T) {
 	}
 
 	invalids := []string{
-		"short",
-		"validButTooLongPassword123@",
+		"Short@1",
+		"validButTooLongPassword123456789!@#$%",
 		"lowercaseonly",
 		"UPPERCASEONLY",
 		"ｚｅｎｋａｋｕｏｎｌｙ",
